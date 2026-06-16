@@ -1,25 +1,16 @@
-import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 
-import { MyContext } from "../../App";
-
 import Logo from "../../assets/images/logo.png";
 import GoogleImg from "../../assets/images/googleImg.png";
 import FacebookImg from "../../assets/images/FACEBOOK.webp";
 
 const SignUp = () => {
-  const { setIsHeaderFooterShow } = useContext(MyContext);
-
-  useEffect(() => {
-    setIsHeaderFooterShow(false);
-  }, [setIsHeaderFooterShow]);
-
-  const handleShowHeaderFooter = () => {
-    setIsHeaderFooterShow(true);
+  const handleSubmit = (e) => {
+    e.preventDefault();
   };
 
   return (
@@ -36,12 +27,12 @@ const SignUp = () => {
       <div className="container">
         <div className="box card p-3 shadow border-0">
           <div className="logoWrapper text-center">
-            <Link to="/" onClick={handleShowHeaderFooter}>
+            <Link to="/">
               <img src={Logo} alt="Psycho Mart Logo" className="logo" />
             </Link>
           </div>
 
-          <form className="mb-2">
+          <form className="mb-2" onSubmit={handleSubmit}>
             <h2 className="mb-3">Sign Up</h2>
 
             <div className="row">
@@ -113,9 +104,9 @@ const SignUp = () => {
                   <Button
                     component={Link}
                     to="/"
+                    type="button"
                     className="btn-lg w-100 btn-big"
                     variant="outlined"
-                    onClick={handleShowHeaderFooter}
                   >
                     Cancel
                   </Button>

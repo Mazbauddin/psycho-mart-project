@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 
@@ -16,6 +16,32 @@ import SignIn from "./Pages/SignIn";
 import SignUp from "./Pages/SignUp";
 
 const MyContext = createContext();
+
+const MainLayout = ({ values }) => {
+  const location = useLocation();
+
+  const hideHeaderFooter =
+    location.pathname === "/signIn" || location.pathname === "/signUp";
+
+  return (
+    <MyContext.Provider value={values}>
+      {!hideHeaderFooter && <Header />}
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/cat/:id" element={<Listing />} />
+        <Route path="/product/:id" element={<ProductDetails />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/signIn" element={<SignIn />} />
+        <Route path="/signUp" element={<SignUp />} />
+      </Routes>
+
+      {!hideHeaderFooter && <Footer />}
+
+      {values.isOpenProductModal && <ProductModal />}
+    </MyContext.Provider>
+  );
+};
 
 function App() {
   const [countryList, setCountryList] = useState([]);
@@ -54,22 +80,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <MyContext.Provider value={values}>
-        {isHeaderFooterShow && <Header />}
-
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/cat/:id" element={<Listing />} />
-          <Route path="/product/:id" element={<ProductDetails />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/signIn" element={<SignIn />} />
-          <Route path="/signUp" element={<SignUp />} />
-        </Routes>
-
-        {isHeaderFooterShow && <Footer />}
-
-        {isOpenProductModal && <ProductModal />}
-      </MyContext.Provider>
+      <MainLayout values={values} />
     </BrowserRouter>
   );
 }
