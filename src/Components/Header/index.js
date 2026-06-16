@@ -20,7 +20,8 @@ const Header = () => {
         <div className="top-strip bg-black">
           <div className="container">
             <p className="mb-0 mt-0 text-center text-white">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Psycho Mart is a demo e-commerce website created for educational
+              purposes.
             </p>
           </div>
         </div>
