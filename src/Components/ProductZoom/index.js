@@ -2,7 +2,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import InnerImageZoom from "react-inner-image-zoom";
 import { useRef, useState } from "react";
-import image from "../../assets/images/side_banner1.png";
+import image from "../../assets/images/fruit.png";
 const ProductZoom = () => {
   const [slideIndex, setSlideIndex] = useState(0);
   const zoomSliderBig = useRef();

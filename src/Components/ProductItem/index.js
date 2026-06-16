@@ -6,7 +6,7 @@ import { IoMdHeartEmpty } from "react-icons/io";
 
 import { MyContext } from "../../App";
 import { Link } from "react-router-dom";
-import image from "../../assets/images/cat-2-removebg-preview.png";
+import image from "../../assets/images/pro1.jpg";
 
 const ProductItem = (props) => {
   const context = useContext(MyContext);
