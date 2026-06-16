@@ -1,9 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import Rating from "@mui/material/Rating";
 import { TfiFullscreen } from "react-icons/tfi";
 import Button from "@mui/material/Button";
 import { IoMdHeartEmpty } from "react-icons/io";
-import ProductModal from "../ProductModal";
+
 import { MyContext } from "../../App";
 import { Link } from "react-router-dom";
 import image from "../../assets/images/cat-2-removebg-preview.png";

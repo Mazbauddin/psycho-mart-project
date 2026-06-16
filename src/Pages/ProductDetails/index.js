@@ -79,6 +79,7 @@ const ProductDetails = () => {
               <ul className="list list-inline mb-0 pl-4">
                 <li className="list-inline-item">
                   <a
+                    href="#!"
                     className={`tag ${activeSize === 0 ? "active" : ""}`}
                     onClick={() => isActive(0)}
                   >
@@ -87,6 +88,7 @@ const ProductDetails = () => {
                 </li>
                 <li className="list-inline-item">
                   <a
+                    href="#!"
                     className={`tag ${activeSize === 1 ? "active" : ""}`}
                     onClick={() => isActive(1)}
                   >
@@ -95,6 +97,7 @@ const ProductDetails = () => {
                 </li>
                 <li className="list-inline-item">
                   <a
+                    href="#!"
                     className={`tag ${activeSize === 2 ? "active" : ""}`}
                     onClick={() => isActive(2)}
                   >
@@ -103,6 +106,7 @@ const ProductDetails = () => {
                 </li>
                 <li className="list-inline-item">
                   <a
+                    href="#!"
                     className={`tag ${activeSize === 3 ? "active" : ""}`}
                     onClick={() => isActive(3)}
                   >
@@ -111,6 +115,7 @@ const ProductDetails = () => {
                 </li>
                 <li className="list-inline-item">
                   <a
+                    href="#!"
                     className={`tag ${activeSize === 4 ? "active" : ""}`}
                     onClick={() => isActive(4)}
                   >

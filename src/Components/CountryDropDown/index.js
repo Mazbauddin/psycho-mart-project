@@ -1,51 +1,48 @@
-import Button from "@mui/material/Button";
 import React, { useContext, useEffect, useState } from "react";
-import { FaAngleDown } from "react-icons/fa6";
 
+import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
+import Slide from "@mui/material/Slide";
+
+import { FaAngleDown } from "react-icons/fa6";
 import { IoIosSearch } from "react-icons/io";
 import { IoCloseSharp } from "react-icons/io5";
-import Slide from "@mui/material/Slide";
+
 import { MyContext } from "../../App";
 
-const Transition = React.forwardRef(function Transition(
-  props: TransitionProps & {
-    children: React.ReactElement<any, any>,
-  },
-  ref: React.Ref<unknown>
-) {
+const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
 const CountryDropDown = () => {
+  const { countryList, selectedCountry, setSelectedCountry } =
+    useContext(MyContext);
+
   const [isOpenModal, setIsOpenModal] = useState(false);
-
   const [selectedCountryTab, setSelectedCountryTab] = useState(null);
+  const [filteredCountryList, setFilteredCountryList] = useState([]);
 
-  const [countryList, setCountryList] = useState([]);
-
-  const context = useContext(MyContext);
+  useEffect(() => {
+    setFilteredCountryList(countryList);
+  }, [countryList]);
 
   const selectCountry = (index, country) => {
     setSelectedCountryTab(index);
+    setSelectedCountry(country);
     setIsOpenModal(false);
-    context.setSelectedCountry(country);
   };
-
-  useEffect(() => {
-    setCountryList(context.countryList);
-  }, []);
 
   const filterList = (e) => {
     const keyword = e.target.value.toLowerCase();
 
     if (keyword !== "") {
-      const list = countryList.filter((item) => {
-        return item.country.toLowerCase().includes(keyword);
-      });
-      setCountryList(list);
+      const list = countryList.filter((item) =>
+        item.country.toLowerCase().includes(keyword),
+      );
+
+      setFilteredCountryList(list);
     } else {
-      setCountryList(context.countryList);
+      setFilteredCountryList(countryList);
     }
   };
 
@@ -54,16 +51,18 @@ const CountryDropDown = () => {
       <Button className="countryDrop" onClick={() => setIsOpenModal(true)}>
         <div className="info d-flex flex-column">
           <span className="location-label">Your Location</span>
+
           <span className="name">
-            {context.selectedCountry !== ""
-              ? context.selectedCountry.length > 10
-                ? context.selectedCountry?.substr(0, 10) + "..."
-                : context.selectedCountry
+            {selectedCountry !== ""
+              ? selectedCountry.length > 10
+                ? `${selectedCountry.substring(0, 10)}...`
+                : selectedCountry
               : "Select Location"}
           </span>
         </div>
+
         <span className="ml-auto">
-          <FaAngleDown />{" "}
+          <FaAngleDown />
         </span>
       </Button>
 
@@ -71,14 +70,14 @@ const CountryDropDown = () => {
         open={isOpenModal}
         onClose={() => setIsOpenModal(false)}
         className="locationModel"
-        slots={{
-          transition: Transition,
-        }}
+        TransitionComponent={Transition}
       >
         <h4>Choose Your Location</h4>
+
         <p>
           Enter your address and we will specify the offer for your location.
         </p>
+
         <Button
           className="closeModelLocation"
           onClick={() => setIsOpenModal(false)}
@@ -93,27 +92,25 @@ const CountryDropDown = () => {
             placeholder="Search Your Area..."
             onChange={filterList}
           />
-          <Button>
+
+          <Button type="button">
             <IoIosSearch />
           </Button>
         </div>
 
         <ul className="countryList mt-3">
-          {countryList?.length !== 0 &&
-            countryList?.map((item, index) => {
-              return (
-                <li key={index}>
-                  <Button
-                    onClick={() => selectCountry(index, item.country)}
-                    className={`${
-                      selectedCountryTab === index ? "active" : ""
-                    }`}
-                  >
-                    {item.country}{" "}
-                  </Button>
-                </li>
-              );
-            })}
+          {filteredCountryList?.length > 0 &&
+            filteredCountryList.map((item, index) => (
+              <li key={`${item.country}-${index}`}>
+                <Button
+                  type="button"
+                  onClick={() => selectCountry(index, item.country)}
+                  className={selectedCountryTab === index ? "active" : ""}
+                >
+                  {item.country}
+                </Button>
+              </li>
+            ))}
         </ul>
       </Dialog>
     </>

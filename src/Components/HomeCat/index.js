@@ -5,7 +5,7 @@ import "swiper/css/navigation";
 import { Navigation, Autoplay } from "swiper/modules";
 import Categories from "../../assets/images/cat-2-removebg-preview.png";
 const HomeCat = () => {
-  const [itemBg, setItemBg] = useState([
+  const [itemBg] = useState([
     "#2298ffff",
     "#ffb0ffff",
     "#a8d3ffff",

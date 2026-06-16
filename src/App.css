@@ -51,6 +51,12 @@ button {
   background: #e5f8ed;
 }
 
+button.border-effect {
+  background: none;
+  border: none;
+  padding: 0;
+  outline: none;
+}
 .btn-blue {
   background: #233a95 !important;
   color: #fff !important;
@@ -579,7 +585,9 @@ nav .navPart2 ul li:hover .submenu {
   border: 1px solid rgba(0, 0, 0, 0.1) !important;
   border-radius: 50% !important;
   background: #fff !important;
-  box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%) !important;
+  box-shadow:
+    0 1px 3px rgb(0 0 0 / 12%),
+    0 1px 2px rgb(0 0 0 / 24%) !important;
 }
 
 .productItem .actions button svg {
@@ -590,7 +598,9 @@ nav .navPart2 ul li:hover .submenu {
 }
 .productItem:hover {
   border: 1px solid #0000 !important;
-  box-shadow: 0 3px 6px #7b6c6c29, 0 3px 6px #0000003b;
+  box-shadow:
+    0 3px 6px #7b6c6c29,
+    0 3px 6px #0000003b;
 }
 .productItem,
 .productItem:hover {
@@ -1436,3 +1446,10 @@ a:hover {
   width: 600px;
 }
 /* Sign Up Page End */
+
+/* new css */
+/* .productSize .tag {
+  background: none;
+  border: none;
+  cursor: pointer;
+} */
