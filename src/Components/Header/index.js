@@ -59,7 +59,7 @@ const Header = () => {
                   )}
 
                   <div className="ml-auto cartTab d-flex align-items-center">
-                    <span className="cartCount">$3.29</span>
+                    <span className="cartCount">$5.29</span>
                     <div className="position-relative ml-2">
                       <Link to="/cart">
                         <Button className="circle">
